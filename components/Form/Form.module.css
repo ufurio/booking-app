@@ -1,0 +1,50 @@
+.form {
+    border: 1px solid #d2d2d2;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.formLabel,
+.formInput {
+    padding: 0 0.5rem;
+}
+
+.formInput {
+    height: 3rem;
+    border: none;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.formInput:active,
+.formInput:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #0070f3;
+}
+
+.formButton {
+    font-weight: bold;
+    color: #fafafa;
+    height: 2.5rem;
+    border: none;
+    border-radius: 10px;
+    background: #0070f3;
+}
+
+.formButton:hover,
+.formButton:focus {
+    cursor: pointer;
+}
+
+.formButton:active {
+    background: #0161cf;
+}

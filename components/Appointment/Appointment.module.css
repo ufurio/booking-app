@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 5rem;
+}
+
+.table {
+  border: 1px solid #d2d2d2;
+}
+
+.table th {
+  height: 3rem;
+  background: #d2d2d2;
+}
+.table td {
+  text-align: center;
+  height: 2rem;
+}
+
+.table tr:nth-child(2n) {
+  background: #d2d2d2;
+}
