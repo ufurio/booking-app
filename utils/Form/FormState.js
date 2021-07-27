@@ -6,14 +6,7 @@ import FormReducer from "./FormReducer";
 const FormState = (props) => {
   const INITIAL_STATE = {
     appointments: [],
-    time_options: [
-      { id: "9am", time: "9:00", count: 5 },
-      { id: "10am", time: "10:00", count: 5 },
-      { id: "11am", time: "11:00", count: 5 },
-      { id: "1pm", time: "13:00", count: 5 },
-      { id: "2pm", time: "14:00", count: 5 },
-      { id: "3pm", time: "15:00", count: 5 },
-    ],
+    timeSlots: [],
   };
   const [state, dispatch] = useReducer(FormReducer, INITIAL_STATE);
 
@@ -38,15 +31,22 @@ const FormState = (props) => {
     });
   };
 
+  const getTimeSlots = (dateArr, date) => {
+    return dispatch({
+      type: actionTypes.CHANGE_DATE,
+      payload: { dateArr, date },
+    });
+  };
+
   return (
     <FormContext.Provider
       value={{
-        state: state,
         appointments: state.appointments,
-        time_options: state.time_options,
+        timeSlots: state.timeSlots,
         handleSubmit,
         handleDelete,
         handleSort,
+        getTimeSlots,
       }}
     >
       {props.children}

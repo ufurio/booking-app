@@ -1,4 +1,5 @@
 import * as actionTypes from "./FormActions";
+import { getTimeSlots } from "../timeSlots/index";
 
 const FormReducer = (state, action) => {
   switch (action.type) {
@@ -35,6 +36,13 @@ const FormReducer = (state, action) => {
       return {
         ...state,
         appointments: sorted,
+      };
+    case actionTypes.CHANGE_DATE:
+      const { dateArr, date } = action.payload;
+      const time = getTimeSlots(dateArr, date);
+      return {
+        ...state,
+        timeSlots: time,
       };
     default:
       return state;

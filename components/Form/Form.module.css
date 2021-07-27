@@ -1,50 +1,73 @@
 .form {
-    border: 1px solid #d2d2d2;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
+  border: 1px solid #d2d2d2;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
 }
 
 .formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.formGroup div {
+  display: flex;
+  width: 100%;
+}
+
+.numberInput {
+  flex-basis: 20%;
 }
 
 .formLabel,
 .formInput {
-    padding: 0 0.5rem;
+  padding: 0 0.5rem;
 }
 
-.formInput {
-    height: 3rem;
-    border: none;
-    border-bottom: 1px solid #d2d2d2;
+.formLabelp {
+  color: #d2d2d2;
+  font-size: 0.6rem;
+  margin: 0%;
+  padding-left: 0.5rem;
+}
+
+.formInput,
+.formGroup select {
+  height: 3rem;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d2d2d2;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  cursor: pointer;
 }
 
 .formInput:active,
-.formInput:focus {
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #0070f3;
+.formInput:focus,
+.formGroup select {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #0070f3;
 }
 
 .formButton {
-    font-weight: bold;
-    color: #fafafa;
-    height: 2.5rem;
-    border: none;
-    border-radius: 10px;
-    background: #0070f3;
+  font-weight: bold;
+  color: #fafafa;
+  height: 2.5rem;
+  border: none;
+  border-radius: 10px;
+  background: #0070f3;
 }
 
 .formButton:hover,
 .formButton:focus {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .formButton:active {
-    background: #0161cf;
+  background: #0161cf;
 }
