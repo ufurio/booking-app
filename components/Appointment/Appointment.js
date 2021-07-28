@@ -21,6 +21,7 @@ function Appointment() {
             <th onClick={() => sortHandler("number")}>Contact No.</th>
             <th onClick={() => sortHandler("time")}>Time</th>
             <th onClick={() => sortHandler("date")}>Date</th>
+            <th>Cancel Appointment</th>
           </tr>
         </thead>
         <tbody>
