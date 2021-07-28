@@ -71,3 +71,16 @@
 .formButton:active {
   background: #0161cf;
 }
+
+.response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  background: #71fd94;
+  color: #009124;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 0.5rem;
+  border-radius: 15px;
+}

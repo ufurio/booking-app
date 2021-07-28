@@ -14,10 +14,15 @@ function Form() {
     isCancelled: false,
   };
   const [formData, setFormData] = useState(FORM_DATA);
-  const { handleSubmit, getTimeSlots, timeSlots } = useContext(FormContext);
+  const { handleSubmit, getTimeSlots, timeSlots, response } =
+    useContext(FormContext);
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
+    if (name === "date") {
+      getTimeSlots(dateArr, value);
+    }
     setFormData({ ...formData, [name]: value });
   };
 
@@ -32,14 +37,14 @@ function Form() {
     const data = await res.json();
     setDateArr(data.data);
   };
-  console.log(timeSlots);
+
   useEffect(() => {
     fetchAppointments();
-    getTimeSlots(dateArr, formData.date);
   }, [formData.date]);
 
   return (
     <form className={styles.form}>
+      {response ? <div className={styles.response}>{response}</div> : null}
       <Link href="/appointments">
         <button>appointments</button>
       </Link>

@@ -1,14 +1,13 @@
 import * as actionTypes from "./FormActions";
-import { getTimeSlots } from "../timeSlots/index";
+import { getTimeSlots } from "../methods/getTimeSlots";
+import { sendAppointment } from "../methods/sendAppointment";
 
 const FormReducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SUBMIT:
-      const formData = action.payload;
-      const newFormData = { ...formData, id: Math.floor(Math.random() * 100) };
       return {
         ...state,
-        appointments: [...state.appointments, newFormData],
+        response: action.payload,
       };
     case actionTypes.DELETE_APPOINTMENT:
       return {

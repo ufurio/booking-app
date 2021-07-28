@@ -2,18 +2,21 @@ import * as actionTypes from "./FormActions";
 import { useReducer } from "react";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
+import { sendAppointment } from "../methods/sendAppointment";
 
 const FormState = (props) => {
   const INITIAL_STATE = {
     appointments: [],
     timeSlots: [],
+    response: "",
   };
   const [state, dispatch] = useReducer(FormReducer, INITIAL_STATE);
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = async (formData) => {
+    const { message } = await sendAppointment(formData);
     return dispatch({
       type: actionTypes.SUBMIT,
-      payload: formData,
+      payload: message,
     });
   };
 
@@ -32,6 +35,7 @@ const FormState = (props) => {
   };
 
   const getTimeSlots = (dateArr, date) => {
+    console.log(dateArr, date);
     return dispatch({
       type: actionTypes.CHANGE_DATE,
       payload: { dateArr, date },
@@ -43,6 +47,7 @@ const FormState = (props) => {
       value={{
         appointments: state.appointments,
         timeSlots: state.timeSlots,
+        response: state.response,
         handleSubmit,
         handleDelete,
         handleSort,
