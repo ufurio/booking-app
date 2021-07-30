@@ -9,8 +9,17 @@ const FormState = (props) => {
     appointments: [],
     timeSlots: [],
     response: "",
+    filterDate: [],
   };
   const [state, dispatch] = useReducer(FormReducer, INITIAL_STATE);
+
+  const setAppointments = async (appointments) => {
+    console.log(appointments);
+    return dispatch({
+      type: actionTypes.SET_APPOINTMENTS,
+      payload: appointments,
+    });
+  };
 
   const handleSubmit = async (formData) => {
     const { message } = await sendAppointment(formData);
@@ -34,6 +43,13 @@ const FormState = (props) => {
     });
   };
 
+  const filterByDate = (appointments) => {
+    return dispatch({
+      type: actionTypes.FILTER_DATE,
+      payload: appointments,
+    });
+  };
+
   const getTimeSlots = (dateArr, date) => {
     console.log(dateArr, date);
     return dispatch({
@@ -45,12 +61,15 @@ const FormState = (props) => {
   return (
     <FormContext.Provider
       value={{
-        appointments: state.appointments,
+        sortedAppointments: state.appointments,
         timeSlots: state.timeSlots,
         response: state.response,
+        filterDate: state.filterDate,
+        setAppointments,
         handleSubmit,
         handleDelete,
         handleSort,
+        filterByDate,
         getTimeSlots,
       }}
     >

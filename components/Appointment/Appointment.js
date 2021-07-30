@@ -1,36 +1,76 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./Appointment.module.css";
 import FormContext from "../../utils/Form/FormContext";
 
-function Appointment() {
+function Appointment({ appointments }) {
   const [ascending, setAscending] = useState(true);
-  const { appointments, handleSort } = useContext(FormContext);
+  const {
+    handleSort,
+    setAppointments,
+    sortedAppointments,
+    filterByDate,
+    filterDate,
+  } = useContext(FormContext);
 
   const sortHandler = (category) => {
     handleSort(category, ascending);
     setAscending(!ascending);
   };
 
+  const filterAppointments = (e) => {
+    const filtered = appointments.filter(
+      (appointment) => appointment.date === e.target.value
+    );
+    if (e.target.value === "all") {
+      return setAppointments(appointments);
+    }
+    setAppointments(filtered);
+  };
+
+  useEffect(() => {
+    setAppointments(appointments);
+    filterByDate(appointments);
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1>Appointments</h1>
+      <div className={styles.filter}>
+        <p>Filter by Date:</p>
+        <select name="filter" onChange={filterAppointments}>
+          <option value="all" defaultValue>
+            Display all
+          </option>
+          {filterDate
+            ? filterDate.map((date) => {
+                return (
+                  <option key={date} value={date}>
+                    {date}
+                  </option>
+                );
+              })
+            : null}
+        </select>
+      </div>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th onClick={() => sortHandler("name")}>Name</th>
-            <th onClick={() => sortHandler("number")}>Contact No.</th>
+            <th onClick={() => sortHandler("firstName")}>First Name</th>
+            <th onClick={() => sortHandler("lastName")}>Last Name</th>
+            <th onClick={() => sortHandler("contactNumber")}>Contact No.</th>
             <th onClick={() => sortHandler("time")}>Time</th>
             <th onClick={() => sortHandler("date")}>Date</th>
             <th>Cancel Appointment</th>
           </tr>
         </thead>
         <tbody>
-          {appointments
-            ? appointments.map((appointment) => {
+          {sortedAppointments
+            ? sortedAppointments.map((appointment) => {
                 return (
                   <tr key={appointment.id}>
-                    <td>{appointment.name}</td>
-                    <td>{appointment.number}</td>
+                    <td>{appointment.firstName}</td>
+                    <td>{appointment.lastName}</td>
+                    <td>{appointment.contactNumber}</td>
                     <td>{appointment.time}</td>
                     <td>{appointment.date}</td>
                   </tr>

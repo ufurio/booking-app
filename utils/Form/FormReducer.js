@@ -1,9 +1,14 @@
 import * as actionTypes from "./FormActions";
 import { getTimeSlots } from "../methods/getTimeSlots";
-import { sendAppointment } from "../methods/sendAppointment";
+import { groupByProperty } from "../methods/groupByProperty";
 
 const FormReducer = (state, action) => {
   switch (action.type) {
+    case actionTypes.SET_APPOINTMENTS:
+      return {
+        ...state,
+        appointments: action.payload,
+      };
     case actionTypes.SUBMIT:
       return {
         ...state,
@@ -17,12 +22,11 @@ const FormReducer = (state, action) => {
         }),
       };
     case actionTypes.SORT:
-      console.log(payload);
       const { category, ascending } = action.payload;
       const sorted = state.appointments.sort((a, b) => {
         let itemA = a[category];
         let itemB = b[category];
-        if (category === "name") {
+        if (category === "firstName") {
           itemA = a[category].toLowerCase();
           itemB = b[category].toLowerCase();
         }
@@ -43,6 +47,10 @@ const FormReducer = (state, action) => {
         ...state,
         timeSlots: time,
       };
+    case actionTypes.FILTER_DATE:
+      const groupArr = groupByProperty(action.payload, "date");
+      const dates = Object.keys(groupArr);
+      return { ...state, filterDate: dates };
     default:
       return state;
   }
