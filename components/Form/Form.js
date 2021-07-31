@@ -33,7 +33,9 @@ function Form() {
   };
 
   const fetchAppointments = async () => {
-    const res = await fetch("http://localhost:3000/api/time-slots");
+    const res = await fetch(
+      "https://booking-app-bice.vercel.app/api/time-slots"
+    );
     const data = await res.json();
     setDateArr(data.data);
   };

@@ -14,7 +14,6 @@ const FormState = (props) => {
   const [state, dispatch] = useReducer(FormReducer, INITIAL_STATE);
 
   const setAppointments = async (appointments) => {
-    console.log(appointments);
     return dispatch({
       type: actionTypes.SET_APPOINTMENTS,
       payload: appointments,
@@ -51,7 +50,6 @@ const FormState = (props) => {
   };
 
   const getTimeSlots = (dateArr, date) => {
-    console.log(dateArr, date);
     return dispatch({
       type: actionTypes.CHANGE_DATE,
       payload: { dateArr, date },
