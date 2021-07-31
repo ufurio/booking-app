@@ -45,7 +45,7 @@ function Form() {
   return (
     <form className={styles.form}>
       {response ? <div className={styles.response}>{response}</div> : null}
-      <Link href="/appointments">
+      <Link href="/appointments" passhref>
         <button>appointments</button>
       </Link>
       <div className={styles.formGroup}>
