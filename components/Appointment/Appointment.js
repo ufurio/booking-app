@@ -30,7 +30,7 @@ function Appointment({ appointments }) {
   useEffect(() => {
     setAppointments(appointments);
     filterByDate(appointments);
-  }, []);
+  }, [appointments]);
 
   return (
     <div className={styles.container}>

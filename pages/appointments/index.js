@@ -18,6 +18,7 @@ export async function getServerSideProps() {
     props: {
       appointments: appointments,
     },
+    revalidate: 10,
   };
 }
 
