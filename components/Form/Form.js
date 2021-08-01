@@ -32,10 +32,12 @@ function Form() {
     setFormData(FORM_DATA);
   };
 
+  const server = process.env.PRODUCTION
+    ? "https://booking-app-bice.vercel.app"
+    : "http://localhost:3000";
+
   const fetchAppointments = async () => {
-    const res = await fetch(
-      "https://booking-app-bice.vercel.app/api/time-slots"
-    );
+    const res = await fetch(`${server}/api/time-slots`);
     const data = await res.json();
     setDateArr(data.data);
   };

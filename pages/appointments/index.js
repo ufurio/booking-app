@@ -11,9 +11,11 @@ function Appointments({ appointments }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(
-    "https://booking-app-bice.vercel.app/api/appointments"
-  );
+  const server = process.env.PRODUCTION
+    ? "https://booking-app-bice.vercel.app"
+    : "http://localhost:3000";
+
+  const res = await fetch(`${server}/api/appointments`);
   const data = await res.json();
   const appointments = data.appointments;
   return {

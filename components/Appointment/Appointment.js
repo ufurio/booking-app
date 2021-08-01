@@ -5,6 +5,7 @@ import FormContext from "../../utils/Form/FormContext";
 function Appointment({ appointments }) {
   const [ascending, setAscending] = useState(true);
   const {
+    handleDelete,
     handleSort,
     setAppointments,
     sortedAppointments,
@@ -73,6 +74,14 @@ function Appointment({ appointments }) {
                     <td>{appointment.contactNumber}</td>
                     <td>{appointment.time}</td>
                     <td>{appointment.date}</td>
+                    <td>
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => handleDelete(appointment.id)}
+                      >
+                        Cancel Appointment
+                      </button>
+                    </td>
                   </tr>
                 );
               })

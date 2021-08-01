@@ -15,11 +15,12 @@ const FormReducer = (state, action) => {
         response: action.payload,
       };
     case actionTypes.DELETE_APPOINTMENT:
+      const newArr = state.appointments.filter(
+        (appointment) => appointment.id !== action.payload
+      );
       return {
         ...state,
-        appointments: state.appoinments.filter((appointment) => {
-          appointment.id !== action.payload;
-        }),
+        appointments: newArr,
       };
     case actionTypes.SORT:
       const { category, ascending } = action.payload;

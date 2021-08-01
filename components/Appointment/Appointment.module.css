@@ -39,3 +39,16 @@
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+.deleteBtn {
+  height: 2rem;
+  margin: 0.5rem;
+  background: #ff8484;
+  color: #640a0a;
+  border: none;
+  border-radius: 5px;
+}
+
+.deleteBtn:hover {
+  cursor: pointer;
+}
