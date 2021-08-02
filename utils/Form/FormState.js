@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
 import { sendAppointment } from "../methods/sendAppointment";
+import { deleteAppointment } from "../methods/deleteAppointment";
 
 const FormState = (props) => {
   const INITIAL_STATE = {
@@ -28,10 +29,11 @@ const FormState = (props) => {
     });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    const { message } = await deleteAppointment(id);
     return dispatch({
       type: actionTypes.DELETE_APPOINTMENT,
-      payload: id,
+      payload: { id: id, message: message },
     });
   };
 

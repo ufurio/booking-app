@@ -16,7 +16,7 @@ const FormReducer = (state, action) => {
       };
     case actionTypes.DELETE_APPOINTMENT:
       const newArr = state.appointments.filter(
-        (appointment) => appointment.id !== action.payload
+        (appointment) => appointment.id !== action.payload.id
       );
       return {
         ...state,
